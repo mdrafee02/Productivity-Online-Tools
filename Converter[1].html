@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Length Converter</title>
+
 </head>
 <style>
     
@@ -238,24 +239,23 @@ button:hover {
                 return;
             }
 
-            var meter, feet, yards, centimeters,cent,acer;
+            var meter, feet, yards, centimeters,cent,acre;
                 meter = area ;
                 feet = area * 10.7639;
                 yards = area * 1.19599;
                 centimeters = area * 10000;
                 cent = area * 0.024715769;
-                acer =area * 0.000247105 ;
+                acre =area * 0.000247105 ;
 
             var resultlength = meter.toFixed(2) + " m<sup>2</sup> <br>" +
                 feet.toFixed(2) + " ft<sup>2</sup><br>" +
                 yards.toFixed(2) + " yrd<sup>2</sup><br>" +
                 centimeters.toFixed(2) + " cm<sup>2</sup><br>" +
                 cent.toFixed(2) + " cent<br>" +
-                acer.toFixed(2) + "acer";
+                acre.toFixed(2) + "acre";
 
             document.getElementById('FourPlotResult').innerHTML = resultlength;
 
-            // document.getElementById('FourPlotResult').innerHTML = Total Area: ${area.toFixed(2)} square meters;
         }
 
         function heronsFormula(a, b, c) {
