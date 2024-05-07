@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>Length Converter</title>
+
+</head>
+<style>
+    
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+    background-color: #faf9f9;
+}
+
+.container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #b8b7b74c;
+    border-radius: 8px;
+    box-shadow: 10px rgba(0, 0, 0, 0.1);
+}
+
+.column {
+  flex: 50%;
+  padding:20px;
+}
+
+.row {
+  display:flex
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#heading{
+    background-color: rgb(51, 51, 51);
+    color: #e1dede;
+    padding:10px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h4 {
+    text-align: center;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="number"] {
+    width:95%;
+    padding: 10px;
+    border: 1px solid #e1dede;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #2b7dca;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.result {
+    margin-top: 20px;
+}
+
+.result div {
+    margin-bottom: 10px;
+}
+
+.result span {
+    font-weight: bold;
+}
+</style>
+<body>
+
+    <script>
+        // calculate length 
+        function convertLength() {
+            var length = parseFloat(document.getElementById('length').value);
+            var Lselect = document.getElementById('Lselect').value;
+
+            var meter, feet, yards, centimeters;
+
+            if (Lselect == "Meter") {
+                meter = length;
+                feet = length * 3.28084;
+                yards = length * 1.09361;
+                centimeters = length * 100;
+            } else if (Lselect == "Feet") {
+                meter = length * 0.3048;
+                feet = length;
+                yards = length * 0.3333;
+                centimeters = length * 30.48;
+            } else if (Lselect == "Yard") { 
+                meter = length * 0.9144;
+                feet = length * 3;
+                yards = length;
+                centimeters = length * 91.44;
+            } else if (Lselect == "Cent") {
+                meter = length * 0.01;
+                feet = length * 0.0328084;
+                yards = length * 0.01093613;
+                centimeters = length;
+            } else {
+                meter = 0;
+                feet = 0;
+                yards = 0;
+                centimeters = 0;
+            }
+
+            var resultlength = meter.toFixed(2) + " meter<br>" +
+                       feet.toFixed(2) + " feet<br>" +
+                       yards.toFixed(2) + " yards<br>" +
+                       centimeters.toFixed(2) + " centimeter";
+
+             document.getElementById('result1').innerHTML = resultlength;
+        }  
+
+        // claculate area
+        function convertArea() {
+            var area = parseFloat(document.getElementById("Area").value);
+            var secondselect = document.getElementById("secondselect").value;
+
+            var cent, acre, hectare, sqft, sqm, sqyd, sqcm;
+
+            if (secondselect == "cent") {
+                cent = area;
+                acre = area / 100;
+                hectare = area * 0.024710538146717;
+                sqft = area * 43560;
+                sqm = area * 40.5;
+                sqyd = area * 48.4;
+                sqcm = area * 404685.64224;
+            } else if (secondselect == "acre") {
+                cent = area * 100;
+                acre = area;
+                hectare = area * 0.40468564;
+                sqft = area * 43560;
+                sqm = area * 4046.85642;
+                sqyd = area * 4840;
+                sqcm = area * 404685642.24;
+            } else if (secondselect == "hectare") {
+                cent = area * 247.105;
+                acre = area * 2.47105381;
+                hectare = area;
+                sqft = area * 107639.104;
+                sqm = area * 10000;
+                sqyd = area * 11959.9005;
+                sqcm = area * 100000000;
+            } else if (secondselect == "sqft") {
+                cent = area * 0.0023;
+                acre = area * 0.00002296;
+                hectare = area * 0.00000929;
+                sqft = area;
+                sqm = area * 0.09290304;
+                sqyd = area * 0.11111111;
+                sqcm = area * 929.0304;
+            } else if (secondselect == "sqm") {
+                cent = area * 0.024710538146717;
+                acre = area * 0.00024711;
+                hectare = area * 0.0001;
+                sqft = area * 10.7639104;
+                sqm = area;
+                sqyd = area * 1.19599005;
+                sqcm = area * 10000;
+            } else if (secondselect == "sqyd") {
+                cent = area * 0.020661157024793;
+                acre = area * 0.00020661;
+                hectare = area * 0.00008361;
+                sqft = area * 9;
+                sqm = area * 0.83612736;
+                sqyd = area;
+                sqcm = area * 8361.2736;
+            } else if (secondselect == "sqcm") {
+                cent = area * 0.02471280747;
+                acre = area * 2.4710538146716E-8;
+                hectare = area * 0.00000001;
+                sqft = area * 0.00107639;
+                sqm = area * 0.0001;
+                sqyd = area * 0.0001196;
+                sqcm = area;
+            }
+
+            var resultarea = cent.toFixed(2) + " cent<br>" +
+                            acre.toFixed(2) + " acre<br>" +
+                            hectare.toFixed(2) + " hectare<br>" +
+                            sqft.toFixed(2) + " sqft<br>" +
+                            sqm.toFixed(2) + " sqm<br>" +
+                            sqyd.toFixed(2) + " sqyd<br>" +
+                            sqcm.toFixed(2) + " sqcm<br>";
+
+            document.getElementById("result2").innerHTML = resultarea;
+        }
+
+        // irregular plot area  //
+        let convertionEnum = [
+                { name: 'Meter', value: 1 },
+                { name: 'Feet', value: 0.3048 },
+                { name: 'Yard', value: 0.9144 },
+                { name: 'Cent', value: 0.01 }
+            ]
+
+
+
+        function calculateArea() {
+            const AB = parseFloat(document.getElementById('AB').value);
+            const BC = parseFloat(document.getElementById('BC').value);
+            const CD = parseFloat(document.getElementById('CD').value);
+            const DA = parseFloat(document.getElementById('DA').value);
+            const AC = parseFloat(document.getElementById('AC').value) || null;
+            const BD = parseFloat(document.getElementById('BD').value) || null;
+
+            let dd1 = document.getElementById("select11").value, dd2 = document.getElementById('select12').value;
+            let dd3 = document.getElementById("select13").value, dd4 = document.getElementById('select14').value;
+            let dd5 = document.getElementById("select15").value, dd6 = document.getElementById('select16').value;
+
+            
+            let ab = convertionEnum.find(x => x.name === dd1);
+            let bc = convertionEnum.find(x => x.name === dd2);
+            let cd = convertionEnum.find(x => x.name === dd3);
+            let da = convertionEnum.find(x => x.name === dd4);
+            let ac = convertionEnum.find(x => x.name === dd5);
+            let bd = convertionEnum.find(x => x.name === dd6);
+
+            let area = 0;
+
+            if (AC) {
+                area += heronsFormula(AB * ab.value, BC * bc.value, AC * ac.value) + heronsFormula(CD * cd.value, DA * da.value, AC * ac.value);
+            } else if (BD) {
+                area += heronsFormula(AB * ab.value, DA * da.value, BD * bd.value) + heronsFormula(BC * bc.value, CD * cd.value, BD * bd.value);
+            } else {
+                document.getElementById('FourPlotResult').innerHTML = "Please enter at least one diagonal length.";
+                return;
+            }
+
+            var meter, feet, yards, centimeters,cent,acre;
+                meter = area ;
+                feet = area * 10.7639;
+                yards = area * 1.19599;
+                centimeters = area * 10000;
+                cent = area * 0.024715769;
+                acre =area * 0.000247105 ;
+
+            var resultlength = meter.toFixed(2) + " m<sup>2</sup> <br>" +
+                feet.toFixed(2) + " ft<sup>2</sup><br>" +
+                yards.toFixed(2) + " yrd<sup>2</sup><br>" +
+                centimeters.toFixed(2) + " cm<sup>2</sup><br>" +
+                cent.toFixed(2) + " cent<br>" +
+                acre.toFixed(2) + "acre";
+
+            document.getElementById('FourPlotResult').innerHTML = resultlength;
+
+        }
+
+        function heronsFormula(a, b, c) {
+            const s = (a + b + c) / 2;
+            return Math.sqrt(s * (s - a) * (s - b) * (s - c));
+        }
+
+
+
+
+        // calculate area of rectangle
+        function calculate() {
+            var length = document.getElementById("paclength").value;
+            var width = document.getElementById("pacwidth").value;
+
+            var select1 = document.getElementById("select1").value;
+            var select2 = document.getElementById("select2").value;
+            console.log("select1",select1)
+            console.log("select2",select2)
+            console.log("length",length)
+            console.log("width",width)
+            
+            var meter, feet, yards, centimeters, cent, acre, calculation;
+
+            if( select1 == "Meter"){
+                if(select2 == "Meter"){
+                  var calculation = length * width;
+                  console.log("MeterCalculation",calculation);
+                    meter = calculation ;
+                    feet = calculation * 10.7639;
+                    yards = calculation * 1.19599;
+                    centimeters = calculation * 10000;
+                    cent = calculation * 0.024715769;
+                    acre =calculation * 0.000247105 ;
+                }else if( select2 == "Feet" ){
+                    var conversion = width * 0.3048;
+                    var calculation = length * conversion;
+                    console.log("FeetCalculation",calculation);
+                    meter = calculation ;
+                    feet = calculation * 10.7639;
+                    yards = calculation * 1.19599;
+                    centimeters = calculation * 10000;
+                    cent = calculation * 0.024715769;
+                    acre =calculation * 0.000247105 ;
+
+                }else if( select2 == "Yard" ){
+                    var conversion = width * 0.9144;
+
+                    var calculation = length * conversion;
+                    console.log("YardCalculation",calculation);
+                    meter = calculation ;
+                    feet = calculation * 10.7639;
+                    yards = calculation * 1.19599;
+                    centimeters = calculation * 10000;
+                    cent = calculation * 0.024715769;
+                    acre =calculation * 0.000247105 ;
+
+                }else if( select2 == "Cent" ){
+                    var conversion = width * 0.01;
+                    console.log("CentConversion",conversion);
+                    var calculation = length * conversion;
+                    console.log("CentCalculation",calculation);
+                    meter = calculation ;
+                    feet = calculation * 10.7639;
+                    yards = calculation * 1.19599;
+                    centimeters = calculation * 10000;
+                    cent = calculation * 0.024715769;
+                    acre =calculation * 0.000247105 ;
+                }
+
+            }else if( select1 == "Feet" ){
+                var converstion = length * 0.3048;
+
+                if(select2 == "Meter"){
+                    var calculation = converstion * width;
+                    meter = calculation ;
+                    feet = calculation * 10.7639;
+                    yards = calculation * 1.19599;
+                    centimeters = calculation * 10000;
+                    cent = calculation * 0.024715769;
+                    acre =calculation * 0.000247105 ;
+
+
+                }else if( select2 == "Feet" ){
+                    var convert = width * 0.3048;
+                    var calculation = converstion * convert;
+                    meter = calculation ;
+                    feet = calculation * 10.7639;
+                    yards = calculation * 1.19599;
+                    centimeters = calculation * 10000;
+                    cent = calculation * 0.024715769;
+                    acre =calculation * 0.000247105 ;
+
+                }else if( select2 == "Yard" ){
+                    var convert = width * 0.9144;
+                    var calculation = converstion * convert;
+                    meter = calculation ;
+                    feet = calculation * 10.7639;
+                    yards = calculation * 1.19599;
+                    centimeters = calculation * 10000;
+                    cent = calculation * 0.024715769;
+                    acre =calculation * 0.000247105 ;
+
+                }else if( select2 == "Cent" ){
+                    var convert = width * 0.01;
+                    var calculation = converstion * convert;
+                    meter = calculation ;
+                    feet = calculation * 10.7639;
+                    yards = calculation * 1.19599;
+                    centimeters = calculation * 10000;
+                    cent = calculation * 0.024715769;
+                    acre =calculation * 0.000247105 ;      
+                }
+                    
+            }else if( select1 == "Yard" ){
+
+                var converstion = length * 0.9144;
+
+                if(select2 == "Meter"){
+                    var calculation = converstion * width;
+                    meter = calculation ;
+                    feet = calculation * 10.7639;
+                    yards = calculation * 1.19599;
+                    centimeters = calculation * 10000;
+                    cent = calculation * 0.024715769;
+                    acre =calculation * 0.000247105 ;
+
+                }else if( select2 == "Feet" ){
+                    var convert = width * 0.3048;
+                    var calculation = converstion * convert;
+                    meter = calculation ;
+                    feet = calculation * 10.7639;
+                    yards = calculation * 1.19599;
+                    centimeters = calculation * 10000;
+                    cent = calculation * 0.024715769;
+                    acre =calculation * 0.000247105 ;
+
+                }else if( select2 == "Yard" ){
+                    var convert = width * 0.9144;
+                    var calculation = converstion * convert;
+                    meter = calculation ;
+                    feet = calculation * 10.7639;
+                    yards = calculation * 1.19599;
+                    centimeters = calculation * 10000;
+                    cent = calculation * 0.024715769;
+                    acre =calculation * 0.000247105 ;
+
+                }else if( select2 == "Cent" ){
+                    var convert = width * 0.01;
+                    var calculation = converstion * convert;
+                    meter = calculation ;
+                    feet = calculation * 10.7639;
+                    yards = calculation * 1.19599;
+                    centimeters = calculation * 10000;
+                    cent = calculation * 0.024715769;
+                    acre =calculation * 0.000247105 ;
+                    
+                }
+                    
+            }else if( select1 == "Cent" ){
+                var converstion = length * 0.01;
+
+                if(select2 == "Meter"){
+                    var calculation = converstion * width;
+                    meter = calculation ;
+                    feet = calculation * 10.7639;
+                    yards = calculation * 1.19599;
+                    centimeters = calculation * 10000;
+                    cent = calculation * 0.024715769;
+                    acre =calculation * 0.000247105 ;
+
+                }else if( select2 == "Feet" ){
+                    var convert = width * 0.3048;
+                    var calculation = converstion * convert;
+                    meter = calculation ;
+                    feet = calculation * 10.7639;
+                    yards = calculation * 1.19599;
+                    centimeters = calculation * 10000;
+                    cent = calculation * 0.024715769;
+                    acre =calculation * 0.000247105 ;
+
+                }else if( select2 == "Yard" ){
+                    var convert = width * 0.9144;
+                    var calculation = converstion * convert;
+                    meter = calculation ;
+                    feet = calculation * 10.7639;
+                    yards = calculation * 1.19599;
+                    centimeters = calculation * 10000;
+                    cent = calculation * 0.024715769;
+                    acre =calculation * 0.000247105 ;
+
+                }else if( select2 == "Cent" ){
+                    var convert = width * 0.01;
+                    var calculation = converstion * convert;
+                    meter = calculation ;
+                    feet = calculation * 10.7639;
+                    yards = calculation * 1.19599;
+                    centimeters = calculation * 10000;
+                    cent = calculation * 0.024715769;
+                    acre =calculation * 0.000247105 ;
+                }         
+            }
+            var resultlength = meter.toFixed(2) + " m<sup>2</sup> <br>" +
+                       feet.toFixed(2) + " ft<sup>2</sup><br>" +
+                       yards.toFixed(2) + " yrd<sup>2</sup><br>" +
+                       centimeters.toFixed(2) + " cm<sup>2</sup><br>" +
+                       cent.toFixed(2) + " cent<br>" +
+                       acre.toFixed(2) + "acre";
+
+             document.getElementById('res').innerHTML = resultlength;
+
+          
+
+        }
+
+
+
+    </script>
+
+
+    <div class="container">
+        <h2>Length Converter</h2>
+        <label for="length">Enter Length:</label>
+        <input type="number" id="length">
+        <select id="Lselect">
+            <option>Meter</option>
+            <option>Feet</option>
+            <option>Yard</option>
+            <option>Cent</option>
+            <option></option>
+        </select>
+        <button onclick="convertLength()">Convert</button>
+        <div id="result1"></div>
+    </div>
+
+
+    <div class="container">
+        <h2>Area Converter</h2>
+        <label for="Area">Enter Area:</label>
+        <input type="number" id="Area">
+        <select id="secondselect">
+            <option>cent</option>
+            <option>acre</option>
+            <option>hectare</option>
+            <option>sqft</option>
+            <option>sqm</option>
+            <option>sqyd</option>
+            <option>sqcm</option>
+        </select>
+        <button onclick="convertArea()">Convert</button>
+        <div id="result2"></div>
+    </div>
+
+    
+
+    <div class="container" id="heading"><h2>Area Calculator for 4 sided plots</h2></div>
+        <div class="container">
+            <h2>Plot Area Calculator</h2>
+            <img src="https://www.cityraja.com/images/core/rectangle_area.jpg" class="center">
+            <div class="col-sm-"><p>To determine the area of a rectangle, you can ascertain it by multiplying the length of one side by the length of another side, perpendicular to the first:</p></div>
+            <h4>Area = Length of Side A * Length of Side B</h4>
+
+            <label for="length">Length A to B:</label>
+            <input type="number" id="paclength">
+            <select id="select1">
+                <option>Meter</option>
+                <option>Feet</option>
+                <option>Yard</option>
+                <option>Cent</option>
+            </select><br><br>
+        
+            <label for="width">Width B to C:</label>
+            <input type="number" id="pacwidth">
+            <select id="select2">
+                <option>Meter</option>
+                <option>Feet</option>
+                <option>Yard</option>
+                <option>Cent</option>
+            </select><br><br>
+    
+            <button onclick="calculate()">Calculate</button><br>
+        
+            <div id="res"> </div>
+        </div>
+    </div>  
+    
+    <div class="container">
+        <h2>Quadrilateral Area Calculator</h2>
+        
+            <img src="https://www.cityraja.com/images/core/plot_area.jpg" alt="irregular_rectangle" class="center">  
+                <p>Here's an alternative explanation for calculating the area of a quadrilateral by splitting it into two triangles and using Heron's formula:
+
+                    When dealing with a four-sided plot, whether regular or irregular, you can partition it into two triangles. The area of each triangle can then be computed using Heron's formula, which accounts for all three side lengths:</p>
+                    
+                    <h4>Area of a Triangle = √[s(s - a)(s - b)(s - c)]</h4>
+                    <ul>
+                        <li>a, b, and c represent the lengths of the triangle's sides, and</li>
+                        <li>s is the semi-perimeter, calculated as s = (a+b+c)/2</li>
+                    </ul>
+    
+            <input type="number" id="AB" placeholder="Length A to B (meters)" required>
+            <select id="select11">
+                <option>Meter</option>
+                <option>Feet</option>
+                <option>Yard</option>
+                <option>Cent</option>
+            </select><br><br>
+
+            <input type="number" id="BC" placeholder="Length B to C (meters)" required>
+            <select id="select12">
+                <option>Meter</option>
+                <option>Feet</option>
+                <option>Yard</option>
+                <option>Cent</option>
+            </select><br><br>
+
+            <input type="number" id="CD" placeholder="Length C to D (meters)" required>
+            <select id="select13">
+                <option>Meter</option>
+                <option>Feet</option>
+                <option>Yard</option>
+                <option>Cent</option>
+            </select><br><br>
+
+            <input type="number" id="DA" placeholder="Length D to A (meters)" required>
+            <select id="select14">
+                <option>Meter</option>
+                <option>Feet</option>
+                <option>Yard</option>
+                <option>Cent</option>
+            </select><br><br>
+            <h4 style="text-align: center;">Atleast one diagonal is required</h4>
+            <input type="number" id="AC" placeholder="Diagonal (meters)">
+            <select id="select15">
+                <option>Meter</option>
+                <option>Feet</option>
+                <option>Yard</option>
+                <option>Cent</option>
+            </select><br><br>
+
+            <input type="number" id="BD" placeholder="Diagonal (meters)">
+            <select id="select16">
+                <option>Meter</option>
+                <option>Feet</option>
+                <option>Yard</option>
+                <option>Cent</option>
+            </select><br><br>
+
+            <button type="button" onclick="calculateArea()">Calculate Area</button>
+        
+        <div id="FourPlotResult"></div>
+        
+    </div>
+    <div class="conatainer">
+        <div class="row">
+            <div class="column">
+              <h3>Length</h3>
+              <p>
+                <ul>
+                    <li>1 yard (yd) = 3 feet (ft)</li>
+                    <li>1 foot (ft) = 12 inches (in) = 30.48 centimeters (cm)</li> 
+                    <li>1 inch (in) = 2.54 centimeters (cm)</li>
+                    <li>1 meter (m) = 100 centimeters (cm) = 39.37 inches (in) = 3.28 feet (ft)</li>
+                </ul>
+              </p>
+            </div>
+            <div class="column">
+              <h3>Area</h3>
+              <p>
+                <ul>
+                    <li>square foot (ft²) = 0.09 square meters (m²)</li>
+                    <li>1 square meter (m²) = 10.76 square feet (ft²)</li>
+                    <li>1 square yard (yd²) = 9 square feet (ft²)</li>
+                    <li>1 cent (c) = 435.61 square feet (ft²) = 40.46 square meters (m²)</li>
+                    <li>1 are = 100 square meters (m²)</li>
+                    <li>1 acre = 100 cents</li>
+                    <li>1 hectare = 2.47 acres = 100 ares</li>
+                </ul>
+              </p>
+            </div>
+        </div>
+
+
+
+
+        <!-- <div class="row">
+            <div class="column">
+            <ul>
+                <h5>Length</h5>
+                <li>1 yard (yd) = 3 feet (ft)</li>
+                <li>1 foot (ft) = 12 inches (in) = 30.48 centimeters (cm)</li> 
+                <li>1 inch (in) = 2.54 centimeters (cm)</li>
+                <li>1 meter (m) = 100 centimeters (cm) = 39.37 inches (in) = 3.28 feet (ft)</li>
+            </ul>
+            </div>
+               
+        </div> -->
+    </div>
+</body>
+</html>
