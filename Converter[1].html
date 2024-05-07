@@ -79,44 +79,29 @@ button:hover {
 <body>
 
     <script>
-
-        function calculateArea() {
-            var side1 = parseFloat(document.getElementById('side1').value);
-            var side2 = parseFloat(document.getElementById('side2').value);
-            var side3 = parseFloat(document.getElementById('side3').value);
-            var side4 = parseFloat(document.getElementById('side4').value);
-            var diagonal = parseFloat(document.getElementById('diagonal').value);
-
-            var s = (side1 + side2 + side3 + side4) / 2;
-
-            var area = Math.sqrt((s-side1) * (s-side2) * (s-side3) * (s-side4) - (side1 * side3 + side2 * side4 - diagonal * diagonal) / 4);
-
-            document.getElementById("output").innerHTML = "Result : " + area.toFixed(3);     
-        }
-
-
+        // calculate length 
         function convertLength() {
             var length = parseFloat(document.getElementById('length').value);
-            var firstSelect = document.getElementById('firstSelect').value;
+            var Lselect = document.getElementById('Lselect').value;
 
             var meter, feet, yards, centimeters;
 
-            if (firstSelect == "Meter") {
+            if (Lselect == "Meter") {
                 meter = length;
                 feet = length * 3.28084;
                 yards = length * 1.09361;
                 centimeters = length * 100;
-            } else if (firstSelect == "Feet") {
+            } else if (Lselect == "Feet") {
                 meter = length * 0.3048;
                 feet = length;
                 yards = length * 0.3333;
                 centimeters = length * 30.48;
-            } else if (firstSelect == "Yard") { 
+            } else if (Lselect == "Yard") { 
                 meter = length * 0.9144;
                 feet = length * 3;
                 yards = length;
                 centimeters = length * 91.44;
-            } else if (firstSelect == "Centimeter") {
+            } else if (Lselect == "Cent") {
                 meter = length * 0.01;
                 feet = length * 0.0328084;
                 yards = length * 0.01093613;
@@ -134,11 +119,10 @@ button:hover {
                        centimeters.toFixed(2) + " centimeter";
 
              document.getElementById('result1').innerHTML = resultlength;
+        }  
 
-        }   
-        
+        // claculate area
         function convertArea() {
-            // Get the input area value
             var area = parseFloat(document.getElementById("Area").value);
             var secondselect = document.getElementById("secondselect").value;
 
@@ -213,20 +197,88 @@ button:hover {
             document.getElementById("result2").innerHTML = resultarea;
         }
 
+        // irregular plot area  //
+        let convertionEnum = [
+                { name: 'Meter', value: 1 },
+                { name: 'Feet', value: 0.3048 },
+                { name: 'Yard', value: 0.9144 },
+                { name: 'Cent', value: 0.01 }
+            ]
 
+
+
+        function calculateArea() {
+            const AB = parseFloat(document.getElementById('AB').value);
+            const BC = parseFloat(document.getElementById('BC').value);
+            const CD = parseFloat(document.getElementById('CD').value);
+            const DA = parseFloat(document.getElementById('DA').value);
+            const AC = parseFloat(document.getElementById('AC').value) || null;
+            const BD = parseFloat(document.getElementById('BD').value) || null;
+
+            let dd1 = document.getElementById("select11").value, dd2 = document.getElementById('select12').value;
+            let dd3 = document.getElementById("select13").value, dd4 = document.getElementById('select14').value;
+            let dd5 = document.getElementById("select15").value, dd6 = document.getElementById('select16').value;
+
+            
+            let ab = convertionEnum.find(x => x.name === dd1);
+            let bc = convertionEnum.find(x => x.name === dd2);
+            let cd = convertionEnum.find(x => x.name === dd3);
+            let da = convertionEnum.find(x => x.name === dd4);
+            let ac = convertionEnum.find(x => x.name === dd5);
+            let bd = convertionEnum.find(x => x.name === dd6);
+
+            let area = 0;
+
+            if (AC) {
+                area += heronsFormula(AB * ab.value, BC * bc.value, AC * ac.value) + heronsFormula(CD * cd.value, DA * da.value, AC * ac.value);
+            } else if (BD) {
+                area += heronsFormula(AB * ab.value, DA * da.value, BD * bd.value) + heronsFormula(BC * bc.value, CD * cd.value, BD * bd.value);
+            } else {
+                document.getElementById('FourPlotResult').innerHTML = "Please enter at least one diagonal length.";
+                return;
+            }
+
+            var meter, feet, yards, centimeters,cent,acer;
+                meter = area ;
+                feet = area * 10.7639;
+                yards = area * 1.19599;
+                centimeters = area * 10000;
+                cent = area * 0.024715769;
+                acer =area * 0.000247105 ;
+
+            var resultlength = meter.toFixed(2) + " m<sup>2</sup> <br>" +
+                feet.toFixed(2) + " ft<sup>2</sup><br>" +
+                yards.toFixed(2) + " yrd<sup>2</sup><br>" +
+                centimeters.toFixed(2) + " cm<sup>2</sup><br>" +
+                cent.toFixed(2) + " cent<br>" +
+                acer.toFixed(2) + "acer";
+
+            document.getElementById('FourPlotResult').innerHTML = resultlength;
+
+            // document.getElementById('FourPlotResult').innerHTML = Total Area: ${area.toFixed(2)} square meters;
+        }
+
+        function heronsFormula(a, b, c) {
+            const s = (a + b + c) / 2;
+            return Math.sqrt(s * (s - a) * (s - b) * (s - c));
+        }
+
+
+
+
+        // calculate area of rectangle
         function calculate() {
             var length = document.getElementById("paclength").value;
             var width = document.getElementById("pacwidth").value;
 
             var select1 = document.getElementById("select1").value;
             var select2 = document.getElementById("select2").value;
-
             console.log("select1",select1)
             console.log("select2",select2)
             console.log("length",length)
             console.log("width",width)
-
-            var meter, feet, yards, centimeters,cent,acre;
+            
+            var meter, feet, yards, centimeters, cent, acre, calculation;
 
             if( select1 == "Meter"){
                 if(select2 == "Meter"){
@@ -237,7 +289,7 @@ button:hover {
                     yards = calculation * 1.19599;
                     centimeters = calculation * 10000;
                     cent = calculation * 0.024715769;
-                    acre =calculation * 0.000247105;
+                    acre =calculation * 0.000247105 ;
                 }else if( select2 == "Feet" ){
                     var conversion = width * 0.3048;
                     var calculation = length * conversion;
@@ -272,8 +324,8 @@ button:hover {
                     centimeters = calculation * 10000;
                     cent = calculation * 0.024715769;
                     acre =calculation * 0.000247105 ;
-                    
                 }
+
             }else if( select1 == "Feet" ){
                 var converstion = length * 0.3048;
 
@@ -285,6 +337,7 @@ button:hover {
                     centimeters = calculation * 10000;
                     cent = calculation * 0.024715769;
                     acre =calculation * 0.000247105 ;
+
 
                 }else if( select2 == "Feet" ){
                     var convert = width * 0.3048;
@@ -314,8 +367,7 @@ button:hover {
                     yards = calculation * 1.19599;
                     centimeters = calculation * 10000;
                     cent = calculation * 0.024715769;
-                    acre =calculation * 0.000247105 ;
-                    
+                    acre =calculation * 0.000247105 ;      
                 }
                     
             }else if( select1 == "Yard" ){
@@ -404,12 +456,8 @@ button:hover {
                     centimeters = calculation * 10000;
                     cent = calculation * 0.024715769;
                     acre =calculation * 0.000247105 ;
-                    
-                }
-                    
+                }         
             }
-
-            
             var resultlength = meter.toFixed(2) + " m<sup>2</sup> <br>" +
                        feet.toFixed(2) + " ft<sup>2</sup><br>" +
                        yards.toFixed(2) + " yrd<sup>2</sup><br>" +
@@ -432,7 +480,7 @@ button:hover {
         <h2>Length Converter</h2>
         <label for="length">Enter Length:</label>
         <input type="number" id="length">
-        <select id="firstSelect">
+        <select id="Lselect">
             <option>Meter</option>
             <option>Feet</option>
             <option>Yard</option>
@@ -465,15 +513,15 @@ button:hover {
 
     <div class="container col-sm-8" id="heading"><h2>Area Calculator for 4 sided plots</h2></div>
         <div class="container">
-            <img src="https://www.cityraja.com/images/core/rectangle_area.jpg" alt="rectangle_area">
             <h2>Plot Area Calculator</h2>
+            <img src="https://www.cityraja.com/images/core/rectangle_area.jpg" width="100%" height="200px">
             <label for="length">Length A to B:</label>
             <input type="number" id="paclength">
             <select id="select1">
                 <option>Meter</option>
                 <option>Feet</option>
                 <option>Yard</option>
-                <option>Centimeter</option>
+                <option>Cent</option>
             </select><br><br>
         
             <label for="width">Width B to C:</label>
@@ -482,7 +530,7 @@ button:hover {
                 <option>Meter</option>
                 <option>Feet</option>
                 <option>Yard</option>
-                <option>Centimeter</option>
+                <option>Cent</option>
             </select><br><br>
     
             <button onclick="calculate()">Calculate</button><br>
@@ -491,34 +539,60 @@ button:hover {
         </div>
     </div>  
     
-    
     <div class="container">
-        <h2>Irregular Plot Area Calculator</h2>
-        <div>
-            <label for="side1">Length A to B</B></B>:</label>
-            <input type="number" id="side1">
-        </div>
-        <div>
-            <label for="side2">Length b to C:</label>
-            <input type="number" id="side2">
-        </div>
-        <div>
-            <label for="side3">Length C to D:</label>
-            <input type="number" id="side3">
-        </div>
-        <div>
-            <label for="side4">Length d to A:</label>
-            <input type="number" id="side4">
-        </div>
-        <div>
-            <label for="diagonal">Diagonal:</label>
-            <input type="number" id="diagonal">
-        </div>
-        <button onclick="calculateArea()">Calculate Area</button>
-        <div id="output"></div>
+        <h1>Quadrilateral Area Calculator</h1>
+        <img src="https://www.cityraja.com/images/core/plot_area.jpg" alt="irregular_rectangle" width="100%" height="300px">
+            <input type="number" id="AB" placeholder="Length A to B (meters)" required>
+            <select id="select11">
+                <option>Meter</option>
+                <option>Feet</option>
+                <option>Yard</option>
+                <option>Cent</option>
+            </select><br><br>
+
+            <input type="number" id="BC" placeholder="Length B to C (meters)" required>
+            <select id="select12">
+                <option>Meter</option>
+                <option>Feet</option>
+                <option>Yard</option>
+                <option>Cent</option>
+            </select><br><br>
+
+            <input type="number" id="CD" placeholder="Length C to D (meters)" required>
+            <select id="select13">
+                <option>Meter</option>
+                <option>Feet</option>
+                <option>Yard</option>
+                <option>Cent</option>
+            </select><br><br>
+
+            <input type="number" id="DA" placeholder="Length D to A (meters)" required>
+            <select id="select14">
+                <option>Meter</option>
+                <option>Feet</option>
+                <option>Yard</option>
+                <option>Cent</option>
+            </select><br><br>
+
+            <input type="number" id="AC" placeholder="Diagonal (meters)">
+            <select id="select15">
+                <option>Meter</option>
+                <option>Feet</option>
+                <option>Yard</option>
+                <option>Cent</option>
+            </select><br><br>
+
+            <input type="number" id="BD" placeholder="Diagonal (meters)">
+            <select id="select16">
+                <option>Meter</option>
+                <option>Feet</option>
+                <option>Yard</option>
+                <option>Cent</option>
+            </select><br><br>
+
+            <button type="button" onclick="calculateArea()">Calculate Area</button>
+        
+        <div id="FourPlotResult"></div>
     </div>
-
-
-
 </body>
 </html>
