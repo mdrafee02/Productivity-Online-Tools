@@ -64,8 +64,8 @@ label {
     margin-bottom: 10px;
 }
 
-input[type="number"] {
-    width:95%;
+input {
+    width:100%;
     padding: 10px;
     border: 1px solid #e1dede;
     border-radius: 5px;
@@ -73,14 +73,14 @@ input[type="number"] {
 }
 
 button {
-    display: block;
-    width: 100%;
-    padding: 10px;
+    display:block;
+    padding:0%;
+    width: 100%;;
     background-color: #2b7dca;
     color: #fff;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
+    cursor:pointer;
 }
 
 button:hover {
@@ -124,7 +124,7 @@ button:hover {
                 feet = length * 3;
                 yards = length;
                 centimeters = length * 91.44;
-            } else if (Lselect == "Cent") {
+            } else if (Lselect == "Centimeter") {
                 meter = length * 0.01;
                 feet = length * 0.0328084;
                 yards = length * 0.01093613;
@@ -500,25 +500,28 @@ button:hover {
 
     <div class="container">
         <h2>Length Converter</h2>
-        <label for="length">Enter Length:</label>
-        <input type="number" id="length">
-        <select id="Lselect">
-            <option>Meter</option>
-            <option>Feet</option>
-            <option>Yard</option>
-            <option>Cent</option>
-            <option></option>
-        </select>
-        <button onclick="convertLength()">Convert</button>
-        <div id="result1"></div>
+        <div class="form-control">
+            <label class="form-group" for="length">Enter Length:</label>
+            <input type="number" id="length">
+            <select class="form-group" id="Lselect">
+                <option>Meter</option>
+                <option>Feet</option>
+                <option>Yard</option>
+                <option>Centimeter</option>
+                <option></option>
+            </select>
+            <button onclick="convertLength()" class="btn btn-primary">Convert</button>
+            <div id="result1"></div>
+        </div>
     </div>
 
 
     <div class="container">
         <h2>Area Converter</h2>
+        <div class="form-control">
         <label for="Area">Enter Area:</label>
-        <input type="number" id="Area">
-        <select id="secondselect">
+        <input class="form-group" type="number" id="Area">
+        <select class="form-group" id="secondselect">
             <option>cent</option>
             <option>acre</option>
             <option>hectare</option>
@@ -527,7 +530,8 @@ button:hover {
             <option>sqyd</option>
             <option>sqcm</option>
         </select>
-        <button onclick="convertArea()">Convert</button>
+        <button class="btn btn-primary" onclick="convertArea()">Convert</button>
+        </div>
         <div id="result2"></div>
     </div>
 
@@ -537,12 +541,12 @@ button:hover {
         <div class="container">
             <h2>Plot Area Calculator</h2>
             <img src="https://www.cityraja.com/images/core/rectangle_area.jpg" class="center">
-            <div class="col-sm-"><p>To determine the area of a rectangle, you can ascertain it by multiplying the length of one side by the length of another side, perpendicular to the first:</p></div>
+            <div><p>To determine the area of a rectangle, you can ascertain it by multiplying the length of one side by the length of another side, perpendicular to the first:</p></div>
             <h4>Area = Length of Side A * Length of Side B</h4>
-
+         <div class="form-control">
             <label for="length">Length A to B:</label>
-            <input type="number" id="paclength">
-            <select id="select1">
+            <input class="form-group" type="number" id="paclength">
+            <select  class="form-group" id="select1">
                 <option>Meter</option>
                 <option>Feet</option>
                 <option>Yard</option>
@@ -550,16 +554,16 @@ button:hover {
             </select><br><br>
         
             <label for="width">Width B to C:</label>
-            <input type="number" id="pacwidth">
-            <select id="select2">
+            <input class="form-group" type="number" id="pacwidth">
+            <select class="form-group" id="select2">
                 <option>Meter</option>
                 <option>Feet</option>
                 <option>Yard</option>
                 <option>Cent</option>
             </select><br><br>
     
-            <button onclick="calculate()">Calculate</button><br>
-        
+            <button class=" btn btn-primary" onclick="calculate()">Calculate</button><br>
+        </div>
             <div id="res"> </div>
         </div>
     </div>  
@@ -577,57 +581,57 @@ button:hover {
                         <li>a, b, and c represent the lengths of the triangle's sides, and</li>
                         <li>s is the semi-perimeter, calculated as s = (a+b+c)/2</li>
                     </ul>
-    
-            <input type="number" id="AB" placeholder="Length A to B (meters)" required>
-            <select id="select11">
+        <div class="form-control">
+            <input class="form-group" type="number" id="AB" placeholder="Length A to B (meters)" required>
+            <select class="form-group" id="select11">
                 <option>Meter</option>
                 <option>Feet</option>
                 <option>Yard</option>
                 <option>Cent</option>
             </select><br><br>
 
-            <input type="number" id="BC" placeholder="Length B to C (meters)" required>
-            <select id="select12">
+            <input class="form-group" type="number" id="BC" placeholder="Length B to C (meters)" required>
+            <select class="form-group" id="select12">
                 <option>Meter</option>
                 <option>Feet</option>
                 <option>Yard</option>
                 <option>Cent</option>
             </select><br><br>
 
-            <input type="number" id="CD" placeholder="Length C to D (meters)" required>
-            <select id="select13">
+            <input class="form-group" type="number" id="CD" placeholder="Length C to D (meters)" required>
+            <select class="form-group" id="select13">
                 <option>Meter</option>
                 <option>Feet</option>
                 <option>Yard</option>
                 <option>Cent</option>
             </select><br><br>
 
-            <input type="number" id="DA" placeholder="Length D to A (meters)" required>
-            <select id="select14">
+            <input class="form-group" type="number" id="DA" placeholder="Length D to A (meters)" required>
+            <select class="form-group" id="select14">
                 <option>Meter</option>
                 <option>Feet</option>
                 <option>Yard</option>
                 <option>Cent</option>
             </select><br><br>
             <h4 style="text-align: center;">Atleast one diagonal is required</h4>
-            <input type="number" id="AC" placeholder="Diagonal (meters)">
-            <select id="select15">
+            <input class="form-group" type="number" id="AC" placeholder="Diagonal (meters)">
+            <select class="form-group" id="select15">
                 <option>Meter</option>
                 <option>Feet</option>
                 <option>Yard</option>
                 <option>Cent</option>
             </select><br><br>
 
-            <input type="number" id="BD" placeholder="Diagonal (meters)">
-            <select id="select16">
+            <input class="form-group" type="number" id="BD" placeholder="Diagonal (meters)">
+            <select class="form-group" id="select16">
                 <option>Meter</option>
                 <option>Feet</option>
                 <option>Yard</option>
                 <option>Cent</option>
             </select><br><br>
 
-            <button type="button" onclick="calculateArea()">Calculate Area</button>
-        
+            <button class="btn btn-primary" onclick="calculateArea()">Calculate Area</button>
+        </div>
         <div id="FourPlotResult"></div>
         
     </div>
@@ -659,22 +663,6 @@ button:hover {
               </p>
             </div>
         </div>
-
-
-
-
-        <!-- <div class="row">
-            <div class="column">
-            <ul>
-                <h5>Length</h5>
-                <li>1 yard (yd) = 3 feet (ft)</li>
-                <li>1 foot (ft) = 12 inches (in) = 30.48 centimeters (cm)</li> 
-                <li>1 inch (in) = 2.54 centimeters (cm)</li>
-                <li>1 meter (m) = 100 centimeters (cm) = 39.37 inches (in) = 3.28 feet (ft)</li>
-            </ul>
-            </div>
-               
-        </div> -->
     </div>
 </body>
 </html>
