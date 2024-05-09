@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Text-rotate-left</title>
+</head>
+<style>
+body {
+    background-color:lightyellow
+    
+}
+.container {
+    margin-top: 50px; 
+    text-align: center;
+}
+
+#text{
+    
+}
+
+input[type="number"] {
+    width: 50px;
+    margin-top: 30px;
+}
+
+button {
+    margin-top: 10px;
+}
+
+button:hover {
+background-color: #0057b4;
+}
+
+h2{
+    color:black
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+</style>
+<body>
+    <div class="container"><h2>Circularly rotate string to left</h2></div>
+    <div class="container">
+        <div><textarea type="text" id="text" rows="12" cols="80"></textarea></div>
+        <button class="btn btn-primary" onclick="rotateLeft()">Rotate text left</button>
+    </div>
+    
+    <script>
+         function rotateLeft() {
+            var textarea = document.getElementById("text");
+            var text = textarea.value;
+            var lines = text.split('\n');
+            var rotatedText = '';
+            for (var i = 0; i < lines.length; i++) {
+                var line = lines[i];
+                for (var j = line.length - 1; j >= 0; j--) {
+                    rotatedText += line.charAt(j);
+                }
+                rotatedText += '\n';
+            }
+            textarea.value = rotatedText;
+        }
+    </script>
+</body>
+</html>
