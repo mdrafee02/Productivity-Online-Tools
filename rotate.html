@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>Rotate-text</title>
+<style>
+body {
+  background-color:lightyellow
+    
+}
+.container {
+    margin-top: 50px; 
+    text-align: center;
+}
+
+
+input[type="number"] {
+    width: 50px;
+    margin-top: 30px;
+}
+
+button {
+    margin-top: 10px;
+}
+
+button:hover {
+background-color: #0057b4;
+}
+
+h2{
+    color:black
+    font-family Verdana, Geneva, Tahoma, sans-serif;
+}
+</style>
+</head>
+<body>
+
+  <div class="container"><h2>Circularly Rotate Text</h2></div>
+  <div class="container">
+    <div><textarea type="text" id="text" rows="12" cols="80"></textarea></div>
+
+    <label><b>Select direction</b></label>
+    <select id="direction">
+        <option value="left">Left</option>
+        <option value="right">Right</option>
+    </select>
+
+    <div><button type="button" class="btn btn-primary" onclick="rotateText()">Rotate</button></div>
+
+    
+  </div>
+<script>
+
+  function rotateText() {
+      var direction = document.getElementById("direction").value;
+      
+      if (direction === "left") {
+        rotateLeft();
+
+      } else if (direction === "right"){
+        rotateRight();
+
+      } else {
+        console.log("invalid direction")
+      }
+    }
+
+  function rotateRight() {
+
+    var text = document.getElementById("text").value;
+    // convert a string to an arrat of characters
+    var chars = text.split("");
+    // Remove the last character and insert it at the beginning
+    chars.unshift(chars.pop());
+    //  Join the characters back into a string
+    var rotatedtext = chars.join("");
+    
+    document.getElementById("text").value = rotatedtext;
+  }
+
+  function rotateLeft() {
+    // Get the text from the textarea
+    var text = document.getElementById("text").value;
+    // Convert the text to an array of characters
+    var chars = text.split("");
+    // Remove the first character and push it to the end
+    chars.push(chars.shift());
+    // Join the characters back into a string
+    var rotatedText = chars.join("");
+    // Set the rotated text back to the textarea
+    document.getElementById("text").value = rotatedText;
+  }
+
+</script>
+
+</body>
+</html>
