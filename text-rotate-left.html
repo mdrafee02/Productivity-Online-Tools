@@ -44,19 +44,17 @@ h2{
     </div>
     
     <script>
-         function rotateLeft() {
-            var textarea = document.getElementById("text");
-            var text = textarea.value;
-            var lines = text.split('\n');
-            var rotatedText = '';
-            for (var i = 0; i < lines.length; i++) {
-                var line = lines[i];
-                for (var j = line.length - 1; j >= 0; j--) {
-                    rotatedText += line.charAt(j);
-                }
-                rotatedText += '\n';
-            }
-            textarea.value = rotatedText;
+        function rotateLeft() {
+            // Get the text from the textarea
+            var text = document.getElementById("text").value;
+            // Convert the text to an array of characters
+            var chars = text.split("");
+            // Remove the first character and push it to the end
+            chars.push(chars.shift());
+            // Join the characters back into a string
+            var rotatedText = chars.join("");
+            // Set the rotated text back to the textarea
+            document.getElementById("text").value = rotatedText;
         }
     </script>
 </body>
