@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Letter-count-frequency</title>
+</head>
+<style>
+body {
+    background-color:rgb(251, 223, 65)
+    
+}
+.container {
+    margin-top: 50px; 
+    text-align: center;
+}
+
+
+input[type="number"] {
+    width: 50px;
+    margin-top: 30px;
+}
+
+button {
+    margin-top: 20px;
+}
+
+button:hover {
+background-color: #0057b4;
+}
+
+h2{
+    color:black
+    font-family Verdana, Geneva, Tahoma, sans-serif;
+}
+
+</style>
+<body>
+    <div class="container"><h2>Count Letter Frequency</h2></div>
+    <div class="container">
+        <div><textarea type="text" id="text" rows="12" cols="80"></textarea></div>
+        <button  type="button" class="btn btn-dark" onclick="countLetterFrequency()">Count</button>
+    </div>
+    
+    <script>
+        function countLetterFrequency() {
+            const text = document.getElementById('text').value.toLowerCase().replace(/[^a-z]/g, ''); // Convert to lowercase and remove non-alphabetic characters
+            const frequency = {};
+            
+            for (let char of text) {
+                frequency[char] = (frequency[char] || 0) + 1; // Increment the count for each character
+            }
+            
+            // Construct the result string
+            let result = '';
+            for (let char in frequency) {
+                result += char + ': ' + frequency[char] + '\n';
+            }
+            
+            document.getElementById("text").value = result;
+        }
+    </script>
+</body>
+</html>
