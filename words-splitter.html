@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Split Text into Words</title>
+</head>
+<style>
+body {
+    background-color:rgb(251, 223, 65)
+    
+}
+.container {
+    margin-top: 50px; 
+    text-align: center;
+}
+
+button {
+    margin-top: 20px;
+}
+
+button:hover {
+background-color: #0057b4;
+}
+
+h2{
+    color:black
+    font-family Verdana, Geneva, Tahoma, sans-serif;
+}
+
+</style>
+<body>
+    <div class="container"><h2>Word Splitter</h2></div>
+    <div class="container">
+        <div><textarea type="text" id="input" rows="12" cols="80"></textarea></div>
+        <button type="button" class="btn btn-dark" onclick="convertText()">Split into Words</button>
+    </div>
+    
+    <script>
+         function convertText() {
+            var inputText = document.getElementById("input").value;
+            var lines = inputText.split(/\n/); // Split text into lines
+
+            var outputText = '';
+
+            // For each line, create a column and populate it with words
+            lines.forEach(function(line) {
+                var words = line.split(/\s+/); // Split line into words
+
+                // Concatenate words with tab and append to output text
+                outputText += words.join('\n');
+            });
+
+            // Set the formatted text as the value of the output textarea
+            document.getElementById("input").value = outputText;
+        }
+    </script>
+</body>
+</html> 
