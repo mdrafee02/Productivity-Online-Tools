@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>HTML to Text Converter</title>
+</head>
+<style>
+body {
+    background-color:rgb(251, 223, 65)
+    
+}
+.container {
+    margin-top: 50px; 
+    text-align: center;
+}
+
+button {
+    margin-top: 20px;
+}
+
+button:hover {
+background-color: #0057b4;
+}
+
+h2{
+    color:black
+    font-family Verdana, Geneva, Tahoma, sans-serif;
+}
+
+</style>
+<body>
+    <div class="container"><h2>Convert HTML code to Text</h2></div>
+    <div class="container">
+        <div><textarea type="text" id="input" rows="12" cols="80"></textarea></div>
+        <button type="button" class="btn btn-dark" onclick="convertToText()">Convert to Text</button>
+    </div>
+    
+    <script>
+         function convertToText() {
+            // Get the input HTML from textarea
+            var htmlInput = document.getElementById("input").value;
+            
+            // Create a temporary element to convert HTML to text
+            var tempElement = document.createElement("div");
+            tempElement.innerHTML = htmlInput;
+            
+            // Get the plain text from the temporary element
+            var plainText = tempElement.textContent || tempElement.innerText;
+            
+            // Set the plain text back to the textarea
+            document.getElementById("input").value = plainText;
+        }
+    </script>
+</body>
+</html> 
