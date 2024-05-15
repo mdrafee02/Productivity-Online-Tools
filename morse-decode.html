@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Morse Encode - Convert into Text</title>
+    <title>Morse Decode - Convert Text into Morse Code</title>
     <meta name="google-site-verification" content="N7zC6r4uLrYBOXp4riejFPN5NReNq6RyrIrzumDf2co" />
-    <meta name="description" content="Convert Morse code to text easily with this online tool. Input Morse code in the textarea and click 'Convert Encode' to get the corresponding text.">
+    <meta name="description" content="Convert text into Morse code effortlessly with this intuitive online tool. Simply input your text, click 'Convert,' and instantly receive the Morse code equivalent. This HTML and JavaScript-based converter is user-friendly and allows for quick and convenient Morse code translation.">
     <link rel="shortcut icon" type="image/png" href="https://fictos.com/static/images/apple-touch-icon.png">
 
     <!-- For social media sharing -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fictos.com/morse-encode">
-    <meta property="og:title" content="Morse Encode">
+    <meta property="og:url" content="https://fictos.com/morse-decode">
+    <meta property="og:title" content="Morse Decode">
     <meta property="og:image" content="https://fictos.com/static/images/apple-touch-icon.png">
-    <meta property="og:description" content="Convert Morse code to text easily with this online tool. Input Morse code in the textarea and click 'Convert Encode' to get the corresponding text.">
-    <meta property="og:site_name" content="Morse Encode">
+    <meta property="og:description" content="Convert text into Morse code effortlessly with this intuitive online tool. Simply input your text, click 'Convert,' and instantly receive the Morse code equivalent. This HTML and JavaScript-based converter is user-friendly and allows for quick and convenient Morse code translation.">
+    <meta property="og:site_name" content="Morse Decode">
     <meta property="og:locale" content="en_US">
     <meta property="og:image:width" content="512">
     <meta property="og:image:height" content="512">
@@ -22,16 +22,16 @@
     <!-- For Apple devices -->
     <link rel="apple-touch-icon" href="https://fictos.com/static/images/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="Morse Encode">
+    <meta name="apple-mobile-web-app-title" content="Morse Decode">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <!-- For Twitter -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@nazirjaleel">
     <meta name="twitter:creator" content="@nazirjaleel">
-    <meta name="twitter:url" content="https://fictos.com/morse-encode">
-    <meta name="twitter:title" content="Morse Encode">
-    <meta name="twitter:description" content="Convert Morse code to text easily with this online tool. Input Morse code in the textarea and click 'Convert Encode' to get the corresponding text.">
+    <meta name="twitter:url" content="https://fictos.com/morse-decode">
+    <meta name="twitter:title" content="Morse Decode">
+    <meta name="twitter:description" content="Convert text into Morse code effortlessly with this intuitive online tool. Simply input your text, click 'Convert,' and instantly receive the Morse code equivalent. This HTML and JavaScript-based converter is user-friendly and allows for quick and convenient Morse code translation.">
     <meta name="twitter:image" content="https://fictos.com/static/images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
@@ -58,40 +58,38 @@ h2{
 
 </style>
 <body>
-    <div class="container"><h2>Morse Code to Text Converter</h2></div>
+    <div class="container"><h2>Text to Morse Code converter</h2></div>
     <div class="container">
         <div><textarea type="text" id="input" rows="12" cols="80"></textarea></div>
-        <button type="button" class="btn btn-dark" onclick="convertMorseToText()">Convert Morse Code to Text</button>
+        <button type="button" class="btn btn-dark" onclick="convertTextToMorse()">Convert Text to Morse Code</button>
     </div>
     
     <script>
-         function convertMorseToText() {
-            const morseCode = document.getElementById("input").value.trim();
-            const morseToText = {
-                ".-": "A", "-...": "B", "-.-.": "C", "-..": "D", ".": "E",
-                "..-.": "F", "--.": "G", "....": "H", "..": "I", ".---": "J",
-                "-.-": "K", ".-..": "L", "--": "M", "-.": "N", "---": "O",
-                ".--.": "P", "--.-": "Q", ".-.": "R", "...": "S", "-": "T",
-                "..-": "U", "...-": "V", ".--": "W", "-..-": "X", "-.--": "Y",
-                "--..": "Z", "-----": "0", ".----": "1", "..---": "2", "...--": "3",
-                "....-": "4", ".....": "5", "-....": "6", "--...": "7", "---..": "8",
-                "----.": "9", ".-.-.-": ".", "--..--": ",", "..--..": "?", ".----.": "'",
-                "-....-": "-", "-..-.": "/", "-.--.": "(", "-.--.-": ")", ".-...": "&",
-                "---...": ":", "-.-.-.": ";", "-...-": "=", ".-.-.": "+", "-....-": "-",
-                "..--.-": "_", ".-..-.": "\"", "...-..-": "$", ".--.-.": "@", "...---...": "SOS"
-            };
-
-            const words = morseCode.split("   "); // Split words by 3 spaces
-            let outputText = "";
-            for (let i = 0; i < words.length; i++) {
-                const letters = words[i].split(" "); // Split letters by space
-                for (let j = 0; j < letters.length; j++) {
-                    outputText += morseToText[letters[j]];
-                }
-                outputText += " "; // Add space between words
-            }
-            document.getElementById("input").value = outputText.trim();
+        function convertTextToMorse() {
+    var text = document.getElementById("input").value.trim().toUpperCase();
+    var morseCode = "";
+    
+    for (var i = 0; i < text.length; i++) {
+        if (text[i] === " ") {
+            morseCode += " ";
+        } else {
+            morseCode += TEXT_TO_MORSE[text[i]] + " ";
         }
+    }
+    
+    document.getElementById("input").value = morseCode.trim();
+}
+
+const TEXT_TO_MORSE = {
+    "A": ".-", "B": "-...", "C": "-.-.", "D": "-..", "E": ".",
+    "F": "..-.", "G": "--.", "H": "....", "I": "..", "J": ".---",
+    "K": "-.-", "L": ".-..", "M": "--", "N": "-.", "O": "---",
+    "P": ".--.", "Q": "--.-", "R": ".-.", "S": "...", "T": "-",
+    "U": "..-", "V": "...-", "W": ".--", "X": "-..-", "Y": "-.--",
+    "Z": "--..", "1": ".----", "2": "..---", "3": "...--", "4": "....-",
+    "5": ".....", "6": "-....", "7": "--...", "8": "---..", "9": "----.",
+    "0": "-----"
+};
     </script>
 
     <script type="module">
