@@ -2,41 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Remove Punctuation Marks</title>
     <meta name="google-site-verification" content="N7zC6r4uLrYBOXp4riejFPN5NReNq6RyrIrzumDf2co" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <title>Remove All Whitespaces</title>
-    <meta name="title" content="Remove All Whitespaces">
-    <meta name="keywords" content="whitespace, remove, text, input, textarea, HTML, JavaScript, programming">
-    <meta name="description" content="This page allows you to remove all whitespaces from text input using a textarea. Simply paste your text, click 'Remove', and all whitespaces will be removed.">   
+    <meta name="description" content="This page allows you to remove all punctuation marks from text input using a textarea. Simply paste your text, click 'Remove', and all punctuation marks will be removed.">
     <link rel="shortcut icon" type="image/png" href="https://fictos.com/static/images/apple-touch-icon.png">
 
+    <!-- For social media sharing -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fictos.com/remove-all-whitespaces">
-    <meta property="og:title" content="Remove All Whitespaces">
+    <meta property="og:url" content="https://fictos.com/remove-punctuation-marks">
+    <meta property="og:title" content="Remove Punctuation Marks">
     <meta property="og:image" content="https://fictos.com/static/images/apple-touch-icon.png">
-    <meta property="og:description" content="This page allows you to remove all whitespaces from text input using a textarea.">
-    <meta property="og:site_name" content="Remove All Whitespaces">
+    <meta property="og:description" content="This page allows you to remove all punctuation marks from text input using a textarea.">
+    <meta property="og:site_name" content="Remove Punctuation Marks">
     <meta property="og:locale" content="en_US">
-     <!-- Next tags are optional but recommended -->
     <meta property="og:image:width" content="512">
     <meta property="og:image:height" content="512">
 
+    <!-- For Apple devices -->
     <link rel="apple-touch-icon" href="https://fictos.com/static/images/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="Remove All Whitespaces">
+    <meta name="apple-mobile-web-app-title" content="Remove Punctuation Marks">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
+    <!-- For Twitter -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@nazirjaleel">
     <meta name="twitter:creator" content="@nazirjaleel">
-    <meta name="twitter:url" content="https://fictos.com/remove-all-whitespaces">
-    <meta name="twitter:title" content="Remove All Whitespaces">
-    <meta name="twitter:description" content="This page allows you to remove all whitespaces from text input using a textarea.">
+    <meta name="twitter:url" content="https://fictos.com/static/images/apple-touch-icon.png">
+    <meta name="twitter:title" content="Remove Punctuation Marks">
+    <meta name="twitter:description" content="This page allows you to remove all punctuation marks from text input using a textarea.">
     <meta name="twitter:image" content="https://fictos.com/static/images/apple-touch-icon.png">
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <style>
 .container {
@@ -59,18 +58,25 @@ h2{
 
 </style>
 <body>
-    <div class="container"><h2>Remove All Whitespaces</h2></div>
+    <div class="container"><h2>Remove Text Punctuation Marks</h2></div>
     <div class="container">
         <div><textarea type="text" id="input" rows="12" cols="80"></textarea></div>
-        <button type="button" class="btn btn-dark" onclick="convert()">Remove</button>
+        <button type="button" class="btn btn-dark" onclick="removePunctuation()">Remove</button>
     </div>
     
     <script>
-        function convert() {
-            var inputElement = document.getElementById("input");
-            var inputText = inputElement.value;
-            var outputText = inputText.replace(/\s+/g, '');
-            inputElement.value = outputText;
+         function removePunctuation() {
+            // Get the input text from the textarea
+            var inputText = document.getElementById("input").value;
+            
+            // Define a regular expression to match punctuation marks
+            var punctuationRegex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
+            
+            // Replace punctuation marks with an empty string
+            var cleanText = inputText.replace(punctuationRegex, "");
+            
+            // Update the textarea with the cleaned text
+            document.getElementById("input").value = cleanText;
         }
     </script>
 
